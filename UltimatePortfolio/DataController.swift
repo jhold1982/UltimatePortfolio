@@ -16,6 +16,8 @@ class DataController: ObservableObject {
 	// get to share the same data for our app.
 	let container: NSPersistentCloudKitContainer
 	
+	@Published var selectedFilter: Filter? = Filter.all
+	
 	// Now that we have some sample data to work with,
 	// we can build a pre-made data controller suitable for previewing SwiftUI views.
 	static var preview: DataController = {
@@ -135,7 +137,7 @@ class DataController: ObservableObject {
 		// which is what updates our view context with the changes we just made to the persistent store.
 	}
 	
-	func deteleAll() {
+	func deleteAll() {
 		let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
 		delete(request1)
 		
