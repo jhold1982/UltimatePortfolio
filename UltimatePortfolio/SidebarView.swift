@@ -26,7 +26,7 @@ struct SidebarView: View {
 	
     var body: some View {
 		List(selection: $dataController.selectedFilter) {
-			Section("Smart Filerts") {
+			Section("Smart Filters") {
 				ForEach(smartFilters) { filter in
 					NavigationLink(value: filter) {
 						Label(filter.name, systemImage: filter.icon)
