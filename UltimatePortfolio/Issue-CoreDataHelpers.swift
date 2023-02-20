@@ -30,7 +30,7 @@ extension Issue {
 		modificationDate ?? Date.now
 	}
 	
-	var issueTag: [Tag] {
+	var issueTags: [Tag] {
 		let result = tags?.allObjects as? [Tag] ?? []
 		return result.sorted()
 	}
@@ -60,7 +60,7 @@ extension Issue {
 // but it is much nicer to work with and that counts for a lot.
 
 extension Issue: Comparable {
-	public static func <(lhs: Issue, lhs: Issue) -> Bool {
+	public static func <(lhs: Issue, rhs: Issue) -> Bool {
 		let left = lhs.issueTitle.localizedLowercase
 		let right = rhs.issueTitle.localizedLowercase
 		
