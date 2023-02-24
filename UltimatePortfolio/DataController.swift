@@ -15,7 +15,6 @@ class DataController: ObservableObject {
 	// but also synchronizing that data with iCloud so that all a user’s devices
 	// get to share the same data for our app.
 	let container: NSPersistentCloudKitContainer
-	
 	@Published var selectedFilter: Filter? = Filter.all
 	
 	// Now that we have some sample data to work with,
@@ -25,27 +24,34 @@ class DataController: ObservableObject {
 		dataController.createSampleData()
 		return dataController
 	}()
-	
 	// Adding an initializer telling our app to load "Main" data model.
 	// Adding an "inMemory" Boolean that allows us to preview data more easily.
 	init(inMemory: Bool = false) {
 		container = NSPersistentCloudKitContainer(name: "Main")
-		
-		// When this is set to true, we’ll create our data entirely in memory rather than on disk,
-		// which means it will just disappear when the application ends –
-		// it’s great for previewing in SwiftUI, but also helpful for writing tests.
 		if inMemory {
 			container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
 		}
-		
-		// Once we’ve configured our Core Data container, we can load it by calling loadPersistentStores().
-		// This will load the actual underlying database on disk, or create it if it doesn’t already exist,
-		// but if that fails somehow we don’t really have any choice but to bail out – something is very seriously wrong!
+		container.viewContext.automaticallyMergesChangesFromParent = true
+		container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+		container.persistentStoreDescriptions.first?.setOption(
+			true as NSNumber,
+			forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+		)
+		NotificationCenter.default.addObserver(
+			forName: .NSPersistentStoreRemoteChange,
+			object: container.persistentStoreCoordinator,
+			queue: .main,
+			using: remoteStoreChanged
+		)
 		container.loadPersistentStores { storeDescription, error in
 			if let error {
 				fatalError("Fatal error loading store: \(error.localizedDescription)")
 			}
 		}
+	}
+	
+	func remoteStoreChanged(_ notification: Notification) {
+		objectWillChange.send()
 	}
 	
 	// createSampleData() method will create a bunch of example issues and tags.
@@ -110,6 +116,7 @@ class DataController: ObservableObject {
 	// and in fact we can do it all in just one method because all Core Data classes
 	// (including the Issue and Tag classes that Xcode generated for us) inherit from a parent class called NSManagedObject.
 	func delete(_ object: NSManagedObject) {
+		objectWillChange.send()
 		container.viewContext.delete(object)
 		save()
 	}
