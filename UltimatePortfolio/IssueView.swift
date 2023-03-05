@@ -87,11 +87,14 @@ struct IssueView: View {
 			}
 		}
 		.disabled(issue.isDeleted)
+		.onReceive(issue.objectWillChange) { _ in
+			dataController.queueSave()
+		}
     }
 }
 
-//struct IssueView_Previews: PreviewProvider {
-//    static var previews: some View {
-//		IssueView(issue: .example)
-//    }
-//}
+struct IssueView_Previews: PreviewProvider {
+    static var previews: some View {
+		IssueView(issue: .example)
+    }
+}

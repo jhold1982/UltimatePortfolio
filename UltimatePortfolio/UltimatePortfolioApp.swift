@@ -16,6 +16,7 @@ struct UltimatePortfolioApp: App {
 	// That uses @State because our app will create and own the data controller,
 	// ensuring it stays alive for the duration of our app’s runtime,
 	// but we don’t want to observe the object for changes.
+	@Environment(\.scenePhase) var scenePhase
     var body: some Scene {
         WindowGroup {
 			NavigationSplitView {
@@ -30,6 +31,11 @@ struct UltimatePortfolioApp: App {
 			// so this effectively connects Core Data to SwiftUI.
 			.environment(\.managedObjectContext, dataController.container.viewContext)
 			.environmentObject(dataController)
+			.onChange(of: scenePhase) { phase in
+				if phase != .active {
+					dataController.save()
+				}
+			}
         }
     }
 }
