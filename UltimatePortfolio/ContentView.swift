@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-	// lets us have access to issues and tags from dataController
 	@EnvironmentObject var dataController: DataController
-	
-	
-	
-	
-	
     var body: some View {
 		List(selection: $dataController.selectedIssue) {
 			ForEach(dataController.issuesForSelectedFilter()) { issue in
@@ -23,7 +17,14 @@ struct ContentView: View {
 			.onDelete(perform: delete)
 		}
 		.navigationTitle("Issues")
-		.searchable(text: $dataController.filterText, prompt: "Filter issues")
+		.searchable(
+			text: $dataController.filterText,
+			tokens: $dataController.filterTokens,
+			suggestedTokens: .constant(dataController.suggestedFilterTokens),
+			prompt: "Filter issues or, type # to add tags."
+		) { tag in
+			Text(tag.tagName)
+		}
     }
 	func delete(_ offsets: IndexSet) {
 		let issues = dataController.issuesForSelectedFilter()

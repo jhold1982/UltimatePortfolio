@@ -14,6 +14,7 @@ class DataController: ObservableObject {
 	@Published var selectedFilter: Filter? = Filter.all
 	@Published var selectedIssue: Issue?
 	@Published var filterText = ""
+	@Published var filterTokens = [Tag]()
 	private var saveTask: Task<Void, Error>?
 	
 	static var preview: DataController = {
@@ -21,6 +22,19 @@ class DataController: ObservableObject {
 		dataController.createSampleData()
 		return dataController
 	}()
+	
+	var suggestedFilterTokens: [Tag] {
+		guard filterText.starts(with: "#") else {
+			return []
+		}
+		let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
+		let request = Tag.fetchRequest()
+		
+		if trimmedFilterText.isEmpty == false {
+			request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
+		}
+		return (try? container.viewContext.fetch(request).sorted()) ?? []
+	}
 	
 	init(inMemory: Bool = false) {
 		container = NSPersistentCloudKitContainer(name: "Main")
@@ -121,23 +135,53 @@ class DataController: ObservableObject {
 	// if there is a tag use it, if not return empty request
 	func issuesForSelectedFilter() -> [Issue] {
 		let filter = selectedFilter ?? .all
-		var predicates: [NSPredicate]()
-		
+		var predicates = [NSPredicate]()
 		if let tag = filter.tag {
 			let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
 			predicates.append(tagPredicate)
 		} else {
-			let request = Issue.fetchRequest()
-			request.predicate = NSPredicate(
+			let datePredicate = NSPredicate(
 				format: "modificationDate > %@",
 				filter.minModificationDate as NSDate
 			)
-			allIssues = (try? container.viewContext.fetch(request)) ?? []
+			predicates.append(datePredicate)
 		}
-//		let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
-//		if trimmedFilterText.isEmpty == false {
-//			allIssues = allIssues.filter { $0.issueTitle.localizedCaseInsensitiveContains(filterText) || $0.issueContent.localizedCaseInsensitiveContains(filterText) }
+		let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
+		if trimmedFilterText.isEmpty == false {
+			let titlePredicate = NSPredicate(
+				format: "title CONTAINS[c] %@",
+				trimmedFilterText
+			)
+			let contentPredicate = NSPredicate(
+				format: "content CONTAINS[c] %@",
+				trimmedFilterText
+			)
+			let combinedPredicate = NSCompoundPredicate(
+				orPredicateWithSubpredicates: [titlePredicate, contentPredicate]
+			)
+			predicates.append(combinedPredicate)
+		}
+		// MARK: for filtering by ANY tags
+//		if filterTokens.isEmpty == false {
+//			let tokenPredicate = NSPredicate(
+//				format: "ANY tags in %@",
+//				filterTokens
+//			)
+//			predicates.append(tokenPredicate)
 //		}
+		// MARK: for filtering by ALL tags
+		if filterTokens.isEmpty == false {
+			for filterToken in filterTokens {
+				let tokenPredicate = NSPredicate(
+					format: "tags CONTAINS %@",
+					filterToken
+				)
+				predicates.append(tokenPredicate)
+			}
+		}
+		let request = Issue.fetchRequest()
+		request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+		let allIssues = (try? container.viewContext.fetch(request)) ?? []
 		return allIssues.sorted()
 	}
 }
