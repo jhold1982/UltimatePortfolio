@@ -54,6 +54,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64133A6029DBE37300EFA3D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				643C0AC929A1F9D600116893 /* DetailView.swift */,
+				647C42DE29A95F31006057B9 /* IssueRow.swift */,
+				647C42E029A96A7E006057B9 /* IssueView.swift */,
+				647C42E229A96A8A006057B9 /* NoIssueView.swift */,
+				643C0AC729A1F9B900116893 /* SidebarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		64133A6129DBE45300EFA3D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64590E2329A30DFB0028317D /* Issue-CoreDataHelpers.swift */,
+				64590E2529A312A40028317D /* Tag-CoreDataHelpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		64133A6229DBE48900EFA3D9 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				643C0ACB29A1FBB400116893 /* Filter.swift */,
+				64F0B34229A109F300E20CDB /* Main.xcdatamodeld */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 		64138EBE299DADAF00566CE0 = {
 			isa = PBXGroup;
 			children = (
@@ -74,18 +104,12 @@
 			isa = PBXGroup;
 			children = (
 				64138ECA299DADAF00566CE0 /* UltimatePortfolioApp.swift */,
-				643C0AC729A1F9B900116893 /* SidebarView.swift */,
 				64138ECC299DADAF00566CE0 /* ContentView.swift */,
-				643C0AC929A1F9D600116893 /* DetailView.swift */,
-				647C42E029A96A7E006057B9 /* IssueView.swift */,
-				647C42E229A96A8A006057B9 /* NoIssueView.swift */,
-				643C0ACB29A1FBB400116893 /* Filter.swift */,
-				647C42DE29A95F31006057B9 /* IssueRow.swift */,
 				64F0B34529A1DB7600E20CDB /* DataController.swift */,
-				64590E2529A312A40028317D /* Tag-CoreDataHelpers.swift */,
-				64590E2329A30DFB0028317D /* Issue-CoreDataHelpers.swift */,
+				64133A6029DBE37300EFA3D9 /* Views */,
+				64133A6229DBE48900EFA3D9 /* Data Models */,
+				64133A6129DBE45300EFA3D9 /* Extensions */,
 				64F0B34729A1ED7D00E20CDB /* Info.plist */,
-				64F0B34229A109F300E20CDB /* Main.xcdatamodeld */,
 				64138ECE299DADAF00566CE0 /* Assets.xcassets */,
 				64138ED0299DADAF00566CE0 /* UltimatePortfolio.entitlements */,
 				64138ED1299DADAF00566CE0 /* Preview Content */,
