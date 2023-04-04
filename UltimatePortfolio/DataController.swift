@@ -216,4 +216,11 @@ class DataController: ObservableObject {
 		let allIssues = (try? container.viewContext.fetch(request)) ?? []
 		return allIssues.sorted()
 	}
+	func newIssue() {
+		let issue = Issue(context: container.viewContext)
+		issue.title = "New issue"
+		issue.creationDate = .now
+		issue.priority = 1
+		save()
+	}
 }
