@@ -17,29 +17,22 @@ enum Status {
 }
 
 class DataController: ObservableObject {
-	
 	let container: NSPersistentCloudKitContainer
-	
 	@Published var selectedFilter: Filter? = Filter.all
 	@Published var selectedIssue: Issue?
-	
 	@Published var filterText = ""
 	@Published var filterTokens = [Tag]()
-	
 	@Published var filterEnabled = false
 	@Published var filterPriority = -1
 	@Published var filterStatus = Status.all
 	@Published var sortType = SortType.dateCreated
 	@Published var sortNewestFirst = true
-	
 	private var saveTask: Task<Void, Error>?
-	
 	static var preview: DataController = {
 		let dataController = DataController(inMemory: true)
 		dataController.createSampleData()
 		return dataController
 	}()
-	
 	var suggestedFilterTokens: [Tag] {
 		guard filterText.starts(with: "#") else {
 			return []
@@ -52,7 +45,6 @@ class DataController: ObservableObject {
 		}
 		return (try? container.viewContext.fetch(request).sorted()) ?? []
 	}
-	
 	init(inMemory: Bool = false) {
 		container = NSPersistentCloudKitContainer(name: "Main")
 		if inMemory {
@@ -76,11 +68,9 @@ class DataController: ObservableObject {
 			}
 		}
 	}
-	
 	func remoteStoreChanged(_ notification: Notification) {
 		objectWillChange.send()
 	}
-	
 	func createSampleData() {
 		let viewContext = container.viewContext
 		
@@ -101,13 +91,12 @@ class DataController: ObservableObject {
 		}
 		try? viewContext.save()
 	}
-	
 	func save() {
+		saveTask?.cancel()
 		if container.viewContext.hasChanges {
 			try? container.viewContext.save()
 		}
 	}
-	
 	func queueSave() {
 		saveTask?.cancel()
 		saveTask = Task { @MainActor in
@@ -115,13 +104,11 @@ class DataController: ObservableObject {
 			save()
 		}
 	}
-	
 	func delete(_ object: NSManagedObject) {
 		objectWillChange.send()
 		container.viewContext.delete(object)
 		save()
 	}
-	
 	func deleteAll() {
 		let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
 		delete(request1)
@@ -129,7 +116,6 @@ class DataController: ObservableObject {
 		delete(request2)
 		save()
 	}
-	
 	func missingTags(from issue: Issue) -> [Tag] {
 		let request = Tag.fetchRequest()
 		let allTags = (try? container.viewContext.fetch(request)) ?? []
@@ -138,7 +124,6 @@ class DataController: ObservableObject {
 		let difference = allTagsSet.symmetricDifference(issue.issueTags)
 		return difference.sorted()
 	}
-	
 	private func delete(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
 		let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 		batchDeleteRequest.resultType = .resultTypeObjectIDs
@@ -148,7 +133,6 @@ class DataController: ObservableObject {
 			NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
 		}
 	}
-	
 	// if there is a tag use it, if not return empty request
 	func issuesForSelectedFilter() -> [Issue] {
 		let filter = selectedFilter ?? .all
@@ -214,7 +198,7 @@ class DataController: ObservableObject {
 			ascending: sortNewestFirst
 		)]
 		let allIssues = (try? container.viewContext.fetch(request)) ?? []
-		return allIssues.sorted()
+		return allIssues
 	}
 	func newTag() {
 		let tag = Tag(context: container.viewContext)
