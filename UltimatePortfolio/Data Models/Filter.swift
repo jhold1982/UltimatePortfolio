@@ -23,7 +23,9 @@ struct Filter: Identifiable, Hashable {
 	/// The minimum modification date is set to a date in the distant past by default,
 	/// so that every issue appears in a filter unless we specifically ask for a newer date.
 	/// We also have an optional Tag, which is where we’ll filter by a specific tag if requested.
-	
+	var activeIssuesCount: Int {
+		tag?.tagActiveIssues.count ?? 0
+	}
 	/// These two constant values represent the smart mailboxes we’ll have:
 	/// “All Issues” and “Recent Issues”.
 	static var all = Filter(id: UUID(), name: "All Issues", icon: "tray")

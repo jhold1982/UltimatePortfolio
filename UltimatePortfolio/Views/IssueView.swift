@@ -104,8 +104,6 @@ struct IssueView: View {
 				} label: {
 					Label(issue.completed ? "Re-open Issue" : "Close Issue", systemImage: "bubble.left.and.exclamationmark.bubble.right")
 				}
-
-
 			} label: {
 				Label("Actions", systemImage: "ellipsis.circle")
 			}

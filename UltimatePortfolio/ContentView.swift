@@ -21,7 +21,7 @@ struct ContentView: View {
 			text: $dataController.filterText,
 			tokens: $dataController.filterTokens,
 			suggestedTokens: .constant(dataController.suggestedFilterTokens),
-			prompt: "Filter issues or, type # to add tags."
+			prompt: "Filter issues, or type # to add tags"
 		) { tag in
 			Text(tag.tagName)
 		}
@@ -74,8 +74,8 @@ struct ContentView: View {
 	}
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-		ContentView() 
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//		ContentView()
+//    }
+//}
