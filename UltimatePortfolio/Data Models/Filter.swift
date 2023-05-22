@@ -35,7 +35,6 @@ struct Filter: Identifiable, Hashable {
 		icon: "clock",
 		minModificationDate: .now.addingTimeInterval(86400 * -7)
 	)
-	
 	/// The methods added are custom Hashable and Equatable conformances,
 	/// because when comparing two filters about all we care is that they have the same id property.
 	/// There’s no point trying to hash the name, icon, modification date, and tag,
@@ -43,8 +42,7 @@ struct Filter: Identifiable, Hashable {
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(id)
 	}
-	
-	static func ==(lhs: Filter, rhs: Filter) -> Bool {
+	static func == (lhs: Filter, rhs: Filter) -> Bool {
 		lhs.id == rhs.id
 	}
 }

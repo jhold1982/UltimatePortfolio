@@ -26,7 +26,7 @@ extension Bundle {
 		do {
 			return try decoder.decode(T.self, from: data)
 		} catch DecodingError.keyNotFound(let key, let context) {
-			fatalError("Failed to decode \(file) from bundle due to missing key '\(key.stringValue)' - \(context.debugDescription)")
+			fatalError("Failed to decode \(file) from bundle: Missing key '\(key.stringValue)'-\(context.debugDescription)")
 		} catch DecodingError.typeMismatch(_, let context) {
 			fatalError("Failed to decode \(file) from bundle due to type mismatch - \(context.debugDescription)")
 		} catch DecodingError.valueNotFound(let type, let context) {

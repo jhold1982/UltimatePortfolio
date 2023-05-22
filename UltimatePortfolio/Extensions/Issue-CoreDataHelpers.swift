@@ -57,7 +57,7 @@ extension Issue {
 }
 
 extension Issue: Comparable {
-	public static func <(lhs: Issue, rhs: Issue) -> Bool {
+	public static func < (lhs: Issue, rhs: Issue) -> Bool {
 		let left = lhs.issueTitle.localizedLowercase
 		let right = rhs.issueTitle.localizedLowercase
 		if left == right {

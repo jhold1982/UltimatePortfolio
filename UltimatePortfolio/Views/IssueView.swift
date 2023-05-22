@@ -31,10 +31,8 @@ struct IssueView: View {
 					Text("High").tag(Int16(2))
 				}
 				.pickerStyle(.menu)
-				
 				// MARK: View for editing tags
 				TagsMenuView(issue: issue)
-				
 			}
 			Section {
 				VStack(alignment: .leading) {

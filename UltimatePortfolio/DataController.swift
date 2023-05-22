@@ -39,7 +39,6 @@ class DataController: ObservableObject {
 		}
 		let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
 		let request = Tag.fetchRequest()
-		
 		if trimmedFilterText.isEmpty == false {
 			request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
 		}
@@ -62,7 +61,7 @@ class DataController: ObservableObject {
 			queue: .main,
 			using: remoteStoreChanged
 		)
-		container.loadPersistentStores { storeDescription, error in
+		container.loadPersistentStores { _, error in
 			if let error {
 				fatalError("Fatal error loading store: \(error.localizedDescription)")
 			}
@@ -73,15 +72,13 @@ class DataController: ObservableObject {
 	}
 	func createSampleData() {
 		let viewContext = container.viewContext
-		
-		for i in 1...5 {
+		for tagCounter in 1...5 {
 			let tag = Tag(context: viewContext)
 			tag.id = UUID()
-			tag.name = "Tag \(i)"
-			
-			for j in 1...10 {
+			tag.name = "Tag \(tagCounter)"
+			for issueCounter in 1...10 {
 				let issue = Issue(context: viewContext)
-				issue.title = "Issue \(j)"
+				issue.title = "Issue \(tagCounter) - \(issueCounter)"
 				issue.content = "Description goes here"
 				issue.creationDate = Date.now
 				issue.completed = Bool.random()
@@ -119,7 +116,6 @@ class DataController: ObservableObject {
 	func missingTags(from issue: Issue) -> [Tag] {
 		let request = Tag.fetchRequest()
 		let allTags = (try? container.viewContext.fetch(request)) ?? []
-		
 		let allTagsSet = Set(allTags)
 		let difference = allTagsSet.symmetricDifference(issue.issueTags)
 		return difference.sorted()
@@ -127,7 +123,6 @@ class DataController: ObservableObject {
 	private func delete(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
 		let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 		batchDeleteRequest.resultType = .resultTypeObjectIDs
-		
 		if let delete = try? container.viewContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
 			let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
 			NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
@@ -141,25 +136,14 @@ class DataController: ObservableObject {
 			let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
 			predicates.append(tagPredicate)
 		} else {
-			let datePredicate = NSPredicate(
-				format: "modificationDate > %@",
-				filter.minModificationDate as NSDate
-			)
+			let datePredicate = NSPredicate(format: "modificationDate > %@", filter.minModificationDate as NSDate)
 			predicates.append(datePredicate)
 		}
 		let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
 		if trimmedFilterText.isEmpty == false {
-			let titlePredicate = NSPredicate(
-				format: "title CONTAINS[c] %@",
-				trimmedFilterText
-			)
-			let contentPredicate = NSPredicate(
-				format: "content CONTAINS[c] %@",
-				trimmedFilterText
-			)
-			let combinedPredicate = NSCompoundPredicate(
-				orPredicateWithSubpredicates: [titlePredicate, contentPredicate]
-			)
+			let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
+			let contentPredicate = NSPredicate(format: "content CONTAINS[c] %@", trimmedFilterText)
+			let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
 			predicates.append(combinedPredicate)
 		}
 		// MARK: for filtering by ANY tags
@@ -227,20 +211,17 @@ class DataController: ObservableObject {
 			let fetchRequest = Issue.fetchRequest()
 			let awardCount = count(for: fetchRequest)
 			return awardCount >= award.value
-			
 		case "closed":
 			// return true if they closed a certain number of issues
 			let fetchRequest = Issue.fetchRequest()
 			fetchRequest.predicate = NSPredicate(format: "completed = true")
 			let awardCount = count(for: fetchRequest)
 			return awardCount >= award.value
-			
 		case "tags":
 			// return true if they created a certain number of tags
 			let fetchRequest = Tag.fetchRequest()
 			let awardCount = count(for: fetchRequest)
 			return awardCount >= award.value
-			
 		default:
 			// an unknown award criterion, this should never be allowed
 //			fatalError("Unknown award criterion: \(award.criterion)")
