@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	// MARK: - PROPERTIES
 	@EnvironmentObject var dataController: DataController
+	
+	
+	// MARK: - BODY
     var body: some View {
 		List(selection: $dataController.selectedIssue) {
 			ForEach(dataController.issuesForSelectedFilter()) { issue in
 				IssueRow(issue: issue)
 			}
 			.onDelete(perform: delete)
-		}
+		} //: END OF LIST
 		.navigationTitle("Issues")
 		.searchable(
 			text: $dataController.filterText,
@@ -27,6 +32,8 @@ struct ContentView: View {
 		}
 		.toolbar(content: ContentViewToolbar.init)
     }
+	
+	// MARK: - FUNCTIONS
 	func delete(_ offsets: IndexSet) {
 		let issues = dataController.issuesForSelectedFilter()
 		for offset in offsets {
@@ -36,6 +43,7 @@ struct ContentView: View {
 	}
 }
 
+// MARK: - PREVIEWS
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 		ContentView()
