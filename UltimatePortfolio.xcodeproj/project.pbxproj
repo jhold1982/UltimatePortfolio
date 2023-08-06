@@ -34,6 +34,7 @@
 		64CE96E02A09751600C435CC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96E22A09751600C435CC /* Localizable.strings */; };
 		64CE96E42A09759700C435CC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96E62A09759700C435CC /* Localizable.stringsdict */; };
 		64CE96E82A09768500C435CC /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96EA2A09768500C435CC /* Awards.json */; };
+		64DC3D2A2A7FC77A00C40BF1 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3D292A7FC77A00C40BF1 /* TagTests.swift */; };
 		64F0B34429A109F300E20CDB /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34229A109F300E20CDB /* Main.xcdatamodeld */; };
 		64F0B34629A1DB7600E20CDB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34529A1DB7600E20CDB /* DataController.swift */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		64CE96E72A09759C00C435CC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = hu; path = hu.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		64CE96E92A09768500C435CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/Awards.json; sourceTree = "<group>"; };
 		64CE96EB2A09768C00C435CC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = hu; path = hu.lproj/Awards.json; sourceTree = "<group>"; };
+		64DC3D292A7FC77A00C40BF1 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
 		64F0B34329A109F300E20CDB /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		64F0B34529A1DB7600E20CDB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		64F0B34729A1ED7D00E20CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				646BC0FF2A4A17A8005F7C6B /* UltimatePortfolio.xctestplan */,
 				646BC0F82A4A16C9005F7C6B /* UltimatePortfolioTests.swift */,
 				645238D22A4A2F580033D263 /* AssetTests.swift */,
+				64DC3D292A7FC77A00C40BF1 /* TagTests.swift */,
 			);
 			path = UltimatePortfolioTests;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				645238D32A4A2F580033D263 /* AssetTests.swift in Sources */,
+				64DC3D2A2A7FC77A00C40BF1 /* TagTests.swift in Sources */,
 				646BC0F92A4A16C9005F7C6B /* UltimatePortfolioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

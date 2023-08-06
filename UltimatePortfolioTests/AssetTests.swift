@@ -11,18 +11,8 @@ import XCTest
 final class AssetTests: XCTestCase {
 	func testColorsExist() {
 		let allColors = [
-			"Dark Blue",
-			"Dark Gray",
-			"Gold",
-			"Gray",
-			"Green",
-			"Light Blue",
-			"Midnight",
-			"Orange",
-			"Pink",
-			"Purple",
-			"Red",
-			"Teal"
+			"Dark Blue", "Dark Gray", "Gold", "Gray", "Green", "Light Blue",
+			"Midnight", "Orange", "Pink", "Purple", "Red", "Teal"
 		]
 		for color in allColors {
 			XCTAssertNotNil(
