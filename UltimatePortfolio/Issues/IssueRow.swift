@@ -16,6 +16,9 @@ struct IssueRow: View {
 				Image(systemName: "exclamationmark.circle")
 					.imageScale(.large)
 					.opacity(issue.priority == 2 ? 1 : 0)
+					.accessibilityIdentifier(
+						issue.priority == 2 ? "\(issue.issueTitle) High Priority" : ""
+					)
 				VStack(alignment: .leading) {
 					Text(issue.issueTitle)
 						.font(.headline)
@@ -27,7 +30,10 @@ struct IssueRow: View {
 				Spacer()
 				VStack(alignment: .trailing) {
 					Text(issue.issueFormattedCreationDate)
-						.accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
+						.accessibilityLabel(issue.issueCreationDate.formatted(
+							date: .abbreviated,
+							time: .omitted)
+						)
 						.font(.subheadline)
 					if issue.completed {
 						Text("CLOSED")
@@ -38,6 +44,7 @@ struct IssueRow: View {
 			}
 		}
 		.accessibilityHint(issue.priority == 2 ? "High priority" : "")
+		.accessibilityIdentifier(issue.issueTitle)
     }
 }
 

@@ -42,7 +42,7 @@ struct IssueView: View {
 					TextField(
 						"Description",
 						text: $issue.issueContent,
-						prompt: Text("Enter the issue description here."),
+						prompt: Text("Enter the issue description here"),
 						axis: .vertical
 					)
 				}
