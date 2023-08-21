@@ -17,6 +17,12 @@ final class PerformanceTests: BaseTestCase {
 		
 		let awards = Array(repeating: Award.allAwards, count: 25).joined()
 		
+		XCTAssertEqual(
+			awards.count,
+			500,
+			"This checks the awards count is constant. Change this if you add awards."
+		)
+		
 		measure {
 			_ = awards.filter(dataController.hasEarned)
 		}
