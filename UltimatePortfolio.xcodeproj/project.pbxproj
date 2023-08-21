@@ -35,6 +35,7 @@
 		64A48E002A92B79B00B45441 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 64A48DFF2A92B79B00B45441 /* DecodableDictionary.json */; };
 		64A48E022A92B7F900B45441 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 64A48E012A92B7F900B45441 /* DecodableString.json */; };
 		64BABEAB2A8D356800E4B4B6 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */; };
+		64CC62582A93C9030056F39F /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC62572A93C9030056F39F /* PerformanceTests.swift */; };
 		64CE96E02A09751600C435CC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96E22A09751600C435CC /* Localizable.strings */; };
 		64CE96E42A09759700C435CC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96E62A09759700C435CC /* Localizable.stringsdict */; };
 		64CE96E82A09768500C435CC /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96EA2A09768500C435CC /* Awards.json */; };
@@ -87,6 +88,7 @@
 		64A48DFF2A92B79B00B45441 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		64A48E012A92B7F900B45441 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
 		64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
+		64CC62572A93C9030056F39F /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		64CE96E12A09751600C435CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64CE96E32A09753000C435CC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64CE96E52A09759700C435CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				64FD48C32A81EA4000A40017 /* AwardsTest.swift */,
 				641C37B82A8BDF8C00D90B61 /* DevelopmentTests.swift */,
 				64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */,
+				64CC62572A93C9030056F39F /* PerformanceTests.swift */,
 				64DC3D292A7FC77A00C40BF1 /* TagTests.swift */,
 				646BC0F82A4A16C9005F7C6B /* UltimatePortfolioTests.swift */,
 				646BC0FF2A4A17A8005F7C6B /* UltimatePortfolio.xctestplan */,
@@ -395,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CC62582A93C9030056F39F /* PerformanceTests.swift in Sources */,
 				645238D32A4A2F580033D263 /* AssetTests.swift in Sources */,
 				64FD48C42A81EA4000A40017 /* AwardsTest.swift in Sources */,
 				64DC3D2A2A7FC77A00C40BF1 /* TagTests.swift in Sources */,
