@@ -8,34 +8,37 @@
 import SwiftUI
 
 struct IssueRow: View {
+	
+	// MARK: - PROPERTIES
 	@EnvironmentObject var dataController: DataController
-	@ObservedObject var issue: Issue
+	@StateObject var viewModel: ViewModel
+	
+	
+	// MARK: - VIEW BODY
     var body: some View {
-		NavigationLink(value: issue) {
+		NavigationLink(value: viewModel.issue) {
 			HStack {
 				Image(systemName: "exclamationmark.circle")
 					.imageScale(.large)
-					.opacity(issue.priority == 2 ? 1 : 0)
-					.accessibilityIdentifier(
-						issue.priority == 2 ? "\(issue.issueTitle) High Priority" : ""
-					)
+					.opacity(viewModel.iconOpacity)
+					.accessibilityIdentifier(viewModel.iconIdentifier)
 				VStack(alignment: .leading) {
-					Text(issue.issueTitle)
+					Text(viewModel.issue.issueTitle)
 						.font(.headline)
 						.lineLimit(1)
-					Text(issue.issueTagsList)
+					Text(viewModel.issue.issueTagsList)
 						.foregroundStyle(.secondary)
 						.lineLimit(1)
 				}
 				Spacer()
 				VStack(alignment: .trailing) {
-					Text(issue.issueFormattedCreationDate)
-						.accessibilityLabel(issue.issueCreationDate.formatted(
+					Text(viewModel.issue.issueFormattedCreationDate)
+						.accessibilityLabel(viewModel.issue.issueCreationDate.formatted(
 							date: .abbreviated,
 							time: .omitted)
 						)
 						.font(.subheadline)
-					if issue.completed {
+					if viewModel.issue.completed {
 						Text("CLOSED")
 							.font(.body.smallCaps())
 					}
@@ -43,9 +46,14 @@ struct IssueRow: View {
 				.foregroundStyle(.secondary)
 			}
 		}
-		.accessibilityHint(issue.priority == 2 ? "High priority" : "")
-		.accessibilityIdentifier(issue.issueTitle)
+		.accessibilityHint(viewModel.accessibilityHint)
+		.accessibilityIdentifier(viewModel.issue.issueTitle)
     }
+	
+	init(issue: Issue) {
+		let viewModel = ViewModel(issue: issue)
+		_viewModel = StateObject(wrappedValue: viewModel)
+	}
 }
 
 struct IssueRow_Previews: PreviewProvider {

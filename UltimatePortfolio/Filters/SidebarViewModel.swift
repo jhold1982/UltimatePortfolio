@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreData
-import SwiftUI
 
 extension SidebarView {
 	class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
