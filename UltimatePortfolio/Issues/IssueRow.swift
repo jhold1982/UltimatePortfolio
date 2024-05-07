@@ -23,22 +23,19 @@ struct IssueRow: View {
 					.opacity(viewModel.iconOpacity)
 					.accessibilityIdentifier(viewModel.iconIdentifier)
 				VStack(alignment: .leading) {
-					Text(viewModel.issue.issueTitle)
+					Text(viewModel.issueTitle)
 						.font(.headline)
 						.lineLimit(1)
-					Text(viewModel.issue.issueTagsList)
+					Text(viewModel.issueTagsList)
 						.foregroundStyle(.secondary)
 						.lineLimit(1)
 				}
 				Spacer()
 				VStack(alignment: .trailing) {
-					Text(viewModel.issue.issueFormattedCreationDate)
-						.accessibilityLabel(viewModel.issue.issueCreationDate.formatted(
-							date: .abbreviated,
-							time: .omitted)
-						)
+					Text(viewModel.creationDate)
+						.accessibilityLabel(viewModel.accessibilityCreationDate)
 						.font(.subheadline)
-					if viewModel.issue.completed {
+					if viewModel.completed {
 						Text("CLOSED")
 							.font(.body.smallCaps())
 					}
@@ -47,7 +44,7 @@ struct IssueRow: View {
 			}
 		}
 		.accessibilityHint(viewModel.accessibilityHint)
-		.accessibilityIdentifier(viewModel.issue.issueTitle)
+		.accessibilityIdentifier(viewModel.issueTitle)
     }
 	
 	init(issue: Issue) {

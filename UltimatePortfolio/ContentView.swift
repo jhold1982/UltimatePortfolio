@@ -15,7 +15,7 @@ struct ContentView: View {
 	
 	// MARK: - VIEW BODY
     var body: some View {
-		List(selection: $viewModel.dataController.selectedIssue) {
+		List(selection: $viewModel.selectedIssue) {
 			ForEach(viewModel.dataController.issuesForSelectedFilter()) { issue in
 				IssueRow(issue: issue)
 			}
@@ -23,9 +23,9 @@ struct ContentView: View {
 		}
 		.navigationTitle("Issues")
 		.searchable(
-			text: $viewModel.dataController.filterText,
-			tokens: $viewModel.dataController.filterTokens,
-			suggestedTokens: .constant(viewModel.dataController.suggestedFilterTokens),
+			text: $viewModel.filterText,
+			tokens: $viewModel.filterTokens,
+			suggestedTokens: .constant(viewModel.suggestedFilterTokens),
 			prompt: "Filter issues, or type # to add tags"
 		) { tag in
 			Text(tag.tagName)

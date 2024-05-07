@@ -8,42 +8,48 @@
 import Foundation
 
 extension Issue {
+	
 	var issueTitle: String {
 		get { title ?? "" }
 		set { title = newValue }
 	}
+	
 	var issueContent: String {
 		get { content ?? "" }
 		set { content = newValue }
 	}
+	
 	var issueCreationDate: Date {
 		creationDate ?? Date.now
 	}
+	
 	var issueModificationDate: Date {
 		modificationDate ?? Date.now
 	}
+	
 	var issueTags: [Tag] {
 		let result = tags?.allObjects as? [Tag] ?? []
 		return result.sorted()
 	}
+	
 	var issueStatus: String {
 		if completed {
-			return "Closed"
+			return NSLocalizedString("Closed", comment: "This issue has been closed by the user.")
 		} else {
-			return "Open"
+			return NSLocalizedString("Open", comment: "This issue has been opened by the user.")
 		}
 	}
+	
 	var issueTagsList: String {
-		guard let tags else { return "No tags" }
+		let noTags = NSLocalizedString("No tags", comment: "The user has not created any tags yet.")
+		guard let tags else { return noTags }
 		if tags.count == 0 {
-			return "No tags"
+			return noTags
 		} else {
 			return issueTags.map(\.tagName).formatted()
 		}
 	}
-	var issueFormattedCreationDate: String {
-		issueCreationDate.formatted(date: .numeric, time: .omitted)
-	}
+	
 	static var example: Issue {
 		let controller = DataController(inMemory: true)
 		let viewContext = controller.container.viewContext

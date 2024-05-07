@@ -8,6 +8,8 @@
 import Foundation
 
 extension IssueRow {
+	
+	@dynamicMemberLookup
 	class ViewModel: ObservableObject {
 		let issue: Issue
 		
@@ -23,8 +25,20 @@ extension IssueRow {
 			issue.priority == 2 ? "High priority" : ""
 		}
 		
+		var creationDate: String {
+			issue.issueCreationDate.formatted(date: .numeric, time: .omitted)
+		}
+		
+		var accessibilityCreationDate: String {
+			issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted)
+		}
+		
 		init(issue: Issue) {
 			self.issue = issue
+		}
+		
+		subscript<Value>(dynamicMember keyPath: KeyPath<Issue, Value>) -> Value {
+			issue[keyPath: keyPath]
 		}
 	}
 }
