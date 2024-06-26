@@ -19,7 +19,7 @@ struct AwardsView: View {
 		[GridItem(.adaptive(minimum: 100, maximum: 100))]
 	}
 	
-	var awardTitle: String {
+	var awardTitle: LocalizedStringKey {
 		if dataController.hasEarned(award: selectedAward) {
 			return "Unlocked: \(selectedAward.name)"
 		} else {
@@ -42,7 +42,7 @@ struct AwardsView: View {
 								.scaledToFit()
 								.padding()
 								.frame(width: 100, height: 100)
-								.foregroundColor(color(for: award))
+								.foregroundStyle(color(for: award))
 						}
 						.accessibilityLabel(label(for: award))
 						.accessibilityHint(award.description)

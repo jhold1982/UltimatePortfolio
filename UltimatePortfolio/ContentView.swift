@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@StateObject var viewModel: ViewModel
 	
 	
-	// MARK: - VIEW BODY
+	// MARK: - View Body
     var body: some View {
 		List(selection: $viewModel.selectedIssue) {
 			ForEach(viewModel.dataController.issuesForSelectedFilter()) { issue in
@@ -39,7 +39,7 @@ struct ContentView: View {
 	}
 }
 
-// MARK: - PREVIEWS
+// MARK: - Previews
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 		ContentView(dataController: .preview)
