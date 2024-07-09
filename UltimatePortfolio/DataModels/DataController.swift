@@ -22,6 +22,8 @@ enum Status {
 class DataController: ObservableObject {
 	/// The lone CloudKit container used to store all our data.
 	let container: NSPersistentCloudKitContainer
+	
+	var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
 
 	@Published var selectedFilter: Filter? = Filter.all
 	@Published var selectedIssue: Issue?
@@ -103,14 +105,29 @@ class DataController: ObservableObject {
 			using: remoteStoreChanged
 		)
 
-		container.loadPersistentStores { _, error in
+		container.loadPersistentStores {
+			[weak self] _,
+			error in
 			if let error {
 				fatalError("Fatal error loading store: \(error.localizedDescription)")
 			}
 			
+			if let description = self?.container.persistentStoreDescriptions.first {
+				description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+				
+				if let coordinator = self?.container.persistentStoreCoordinator {
+					self?.spotlightDelegate = NSCoreDataCoreSpotlightDelegate(
+						forStoreWith: description,
+						coordinator: coordinator
+					)
+					
+					self?.spotlightDelegate?.startSpotlightIndexing()
+				}
+			}
+			
 			#if DEBUG
 			if CommandLine.arguments.contains("enable-testing") {
-				self.deleteAll()
+				self?.deleteAll()
 				// disables animations during UI Unit Testing
 				UIView.setAnimationsEnabled(false)
 			}
