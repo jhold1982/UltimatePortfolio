@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreSpotlight
 
 @main
 struct UltimatePortfolioApp: App {
@@ -36,6 +37,17 @@ struct UltimatePortfolioApp: App {
 					dataController.save()
 				}
 			}
+			.onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
         }
     }
+	// MARK: - Functions
+	/// Method for loading a tapped spotlight item
+	/// - Parameter userActivity: The action of having tapped the selected item from spotlight
+	func loadSpotlightItem(_ userActivity: NSUserActivity) {
+		if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+			dataController.selectedIssue = dataController.issue(with: uniqueIdentifier)
+			dataController.selectedFilter = .all
+			
+		}
+	}
 }

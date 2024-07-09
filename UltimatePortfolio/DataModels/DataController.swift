@@ -8,6 +8,7 @@
 import CoreData
 import SwiftUI
 
+// MARK: - Enums
 enum SortType: String {
 	case dateCreated = "creationDate"
 	case dateModified = "modificationDate"
@@ -17,9 +18,12 @@ enum Status {
 	case all, open, closed
 }
 
+// MARK: - DataController Class
 /// An environment singleton responsible for managing our Core Data stack, including handling saving,
 /// counting fetch requests, tracking orders, and dealing with sample data.
 class DataController: ObservableObject {
+	
+	// MARK: - Properties
 	/// The lone CloudKit container used to store all our data.
 	let container: NSPersistentCloudKitContainer
 	
@@ -72,6 +76,7 @@ class DataController: ObservableObject {
 		return managedObjectModel
 	}()
 
+	// MARK: - Initializer
 	/// Initializes a data controller, either in memory (for testing use such as previewing),
 	/// or on permanent storage (for use in regular app runs.)
 	///
@@ -134,7 +139,8 @@ class DataController: ObservableObject {
 			#endif
 		}
 	}
-
+	
+	// MARK: - Functions
 	func remoteStoreChanged(_ notification: Notification) {
 		objectWillChange.send()
 	}
@@ -330,5 +336,17 @@ class DataController: ObservableObject {
 			// fatalError("Unknown award criterion: \(award.criterion)")
 			return false
 		}
+	}
+	
+	func issue(with uniqueIdentifier: String) -> Issue? {
+		guard let url = URL(string: uniqueIdentifier) else {
+			return nil
+		}
+		
+		guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
+			return nil
+		}
+		
+		return try? container.viewContext.existingObject(with: id) as? Issue
 	}
 }
