@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct IssueView: View {
+	
+	// MARK: - Properties
 	@ObservedObject var issue: Issue
 	@EnvironmentObject var dataController: DataController
+	@Environment(\.openURL) var openURL
+	@State private var showingNotificationsError: Bool = false
+	
+	// MARK: - View Body
     var body: some View {
 		Form {
 			Section {
@@ -69,7 +75,42 @@ struct IssueView: View {
 		.toolbar {
 			IssueViewToolbar(issue: issue)
 		}
+		.alert("Oops!", isPresented: $showingNotificationsError) {
+			Button("Check Settings", action: showAppSettings)
+			Button("Cancel", role: .cancel) { }
+		} message: {
+			Text("There was a problem setting your notification. Please check you have notifications enabled.")
+		}
+		.onChange(of: issue.reminderEnabled) { _ in
+			updateReminder()
+		}
+		.onChange(of: issue.reminderTime) { _ in
+			updateReminder()
+		}
     }
+	
+	// MARK: - Functions
+	func showAppSettings() {
+		guard let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) else {
+			return
+		}
+		openURL(settingsURL)
+	}
+	
+	func updateReminder() {
+		dataController.removeReminders(for: issue)
+		
+		Task { @MainActor in
+			if issue.reminderEnabled {
+				let success = await dataController.addReminders(for: issue)
+				
+				if success == false {
+					issue.reminderEnabled = false
+					showingNotificationsError = false
+				}
+			}
+		}
+	}
 }
 
 //struct IssueView_Previews: PreviewProvider {
