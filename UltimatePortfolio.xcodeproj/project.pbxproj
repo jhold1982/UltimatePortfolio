@@ -44,6 +44,7 @@
 		64CE96E02A09751600C435CC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96E22A09751600C435CC /* Localizable.strings */; };
 		64CE96E42A09759700C435CC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96E62A09759700C435CC /* Localizable.stringsdict */; };
 		64CE96E82A09768500C435CC /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96EA2A09768500C435CC /* Awards.json */; };
+		64D4531C2C3ECB0700B18C31 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4531B2C3ECB0700B18C31 /* DataController-Notifications.swift */; };
 		64DC3D2A2A7FC77A00C40BF1 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3D292A7FC77A00C40BF1 /* TagTests.swift */; };
 		64F0B34429A109F300E20CDB /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34229A109F300E20CDB /* Main.xcdatamodeld */; };
 		64F0B34629A1DB7600E20CDB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34529A1DB7600E20CDB /* DataController.swift */; };
@@ -115,6 +116,7 @@
 		64CE96E72A09759C00C435CC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = hu; path = hu.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		64CE96E92A09768500C435CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/Awards.json; sourceTree = "<group>"; };
 		64CE96EB2A09768C00C435CC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = hu; path = hu.lproj/Awards.json; sourceTree = "<group>"; };
+		64D4531B2C3ECB0700B18C31 /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
 		64DC3D292A7FC77A00C40BF1 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
 		64F0B34329A109F300E20CDB /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		64F0B34529A1DB7600E20CDB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				64F0B34529A1DB7600E20CDB /* DataController.swift */,
+				64D4531B2C3ECB0700B18C31 /* DataController-Notifications.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				6469703B2A1BCA5B004FA284 /* IssueViewToolbar.swift in Sources */,
 				646970412A1BCE06004FA284 /* SmartFilterRow.swift in Sources */,
 				644F3CE429E4A67E0084D122 /* AwardsView.swift in Sources */,
+				64D4531C2C3ECB0700B18C31 /* DataController-Notifications.swift in Sources */,
 				64590E2629A312A40028317D /* Tag-CoreDataHelpers.swift in Sources */,
 				64F0B34429A109F300E20CDB /* Main.xcdatamodeld in Sources */,
 				64590E2429A30DFB0028317D /* Issue-CoreDataHelpers.swift in Sources */,

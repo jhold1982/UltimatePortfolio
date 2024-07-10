@@ -31,9 +31,10 @@ struct IssueView: View {
 					Text("High").tag(Int16(2))
 				}
 				.pickerStyle(.menu)
-				// MARK: View for editing tags
+				
 				TagsMenuView(issue: issue)
 			}
+			
 			Section {
 				VStack(alignment: .leading) {
 					Text("Basic Information")
@@ -44,6 +45,18 @@ struct IssueView: View {
 						text: $issue.issueContent,
 						prompt: Text("Enter the issue description here"),
 						axis: .vertical
+					)
+				}
+			}
+			
+			Section("Reminders") {
+				Toggle("Show reminders", isOn: $issue.reminderEnabled.animation())
+				
+				if issue.reminderEnabled {
+					DatePicker(
+						"Reminder time",
+						selection: $issue.issueReminderTime,
+						displayedComponents: .hourAndMinute
 					)
 				}
 			}
@@ -59,8 +72,8 @@ struct IssueView: View {
     }
 }
 
-struct IssueView_Previews: PreviewProvider {
-    static var previews: some View {
-		IssueView(issue: .example)
-    }
-}
+//struct IssueView_Previews: PreviewProvider {
+//    static var previews: some View {
+//		IssueView(issue: .example)
+//    }
+//}

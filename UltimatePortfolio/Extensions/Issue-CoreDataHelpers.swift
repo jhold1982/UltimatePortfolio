@@ -50,6 +50,11 @@ extension Issue {
 		}
 	}
 	
+	var issueReminderTime: Date {
+		get { reminderTime ?? .now }
+		set { reminderTime = newValue }
+	}
+	
 	static var example: Issue {
 		let controller = DataController(inMemory: true)
 		let viewContext = controller.container.viewContext
@@ -62,6 +67,7 @@ extension Issue {
 	}
 }
 
+// MARK: - Extension on Issue
 extension Issue: Comparable {
 	public static func < (lhs: Issue, rhs: Issue) -> Bool {
 		let left = lhs.issueTitle.localizedLowercase
