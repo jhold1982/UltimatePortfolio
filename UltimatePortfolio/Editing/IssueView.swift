@@ -67,6 +67,7 @@ struct IssueView: View {
 				}
 			}
 		}
+		// MARK: - View Modifiers
 		.disabled(issue.isDeleted)
 		.onReceive(issue.objectWillChange) { _ in
 			dataController.queueSave()
