@@ -12,6 +12,7 @@
 		64138ECF299DADAF00566CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64138ECE299DADAF00566CE0 /* Assets.xcassets */; };
 		64138ED3299DADAF00566CE0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64138ED2299DADAF00566CE0 /* Preview Assets.xcassets */; };
 		641C37B92A8BDF8C00D90B61 /* DevelopmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641C37B82A8BDF8C00D90B61 /* DevelopmentTests.swift */; };
+		64256A672C48598F0066221B /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64256A662C48598F0066221B /* DataController-StoreKit.swift */; };
 		643C0AC829A1F9B900116893 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C0AC729A1F9B900116893 /* SidebarView.swift */; };
 		643C0ACA29A1F9D600116893 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C0AC929A1F9D600116893 /* DetailView.swift */; };
 		643C0ACC29A1FBB400116893 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C0ACB29A1FBB400116893 /* Filter.swift */; };
@@ -76,6 +77,8 @@
 		64138ED0299DADAF00566CE0 /* UltimatePortfolio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UltimatePortfolio.entitlements; sourceTree = "<group>"; };
 		64138ED2299DADAF00566CE0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		641C37B82A8BDF8C00D90B61 /* DevelopmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentTests.swift; sourceTree = "<group>"; };
+		64256A652C4858310066221B /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		64256A662C48598F0066221B /* DataController-StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-StoreKit.swift"; sourceTree = "<group>"; };
 		643C0AC729A1F9B900116893 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		643C0AC929A1F9D600116893 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		643C0ACB29A1FBB400116893 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 			children = (
 				64F0B34729A1ED7D00E20CDB /* Info.plist */,
 				64F0B34229A109F300E20CDB /* Main.xcdatamodeld */,
+				64256A652C4858310066221B /* Configuration.storekit */,
 				64138ED0299DADAF00566CE0 /* UltimatePortfolio.entitlements */,
 			);
 			path = Configuration;
@@ -310,6 +314,7 @@
 			children = (
 				64F0B34529A1DB7600E20CDB /* DataController.swift */,
 				64D4531B2C3ECB0700B18C31 /* DataController-Notifications.swift */,
+				64256A662C48598F0066221B /* DataController-StoreKit.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				6469703B2A1BCA5B004FA284 /* IssueViewToolbar.swift in Sources */,
 				646970412A1BCE06004FA284 /* SmartFilterRow.swift in Sources */,
 				644F3CE429E4A67E0084D122 /* AwardsView.swift in Sources */,
+				64256A672C48598F0066221B /* DataController-StoreKit.swift in Sources */,
 				64D4531C2C3ECB0700B18C31 /* DataController-Notifications.swift in Sources */,
 				64590E2629A312A40028317D /* Tag-CoreDataHelpers.swift in Sources */,
 				64F0B34429A109F300E20CDB /* Main.xcdatamodeld in Sources */,
