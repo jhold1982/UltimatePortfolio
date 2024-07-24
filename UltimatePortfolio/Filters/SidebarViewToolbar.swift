@@ -8,18 +8,27 @@
 import SwiftUI
 
 struct SidebarViewToolbar: View {
+	
+	// MARK: - Properties
 	@EnvironmentObject var dataController: DataController
 	@State private var showingAwards = false
+	@State private var showingStore = false
+	
+	// MARK: - View Body
     var body: some View {
-		Button(action: dataController.newTag) {
+		
+		Button(action: tryNewTag) {
 			Label("Add tag", systemImage: "plus")
 		}
+		.sheet(isPresented: $showingStore, content: StoreView.init)
+		
 		Button {
 			showingAwards.toggle()
 		} label: {
 			Label("Show awards", systemImage: "rosette")
 		}
 		.sheet(isPresented: $showingAwards, content: AwardsView.init)
+		
 		#if DEBUG
 		Button {
 			dataController.deleteAll()
@@ -29,6 +38,13 @@ struct SidebarViewToolbar: View {
 		}
 		#endif
     }
+	
+	// MARK: - Functions
+	func tryNewTag() {
+		if dataController.newTag() == false {
+			showingStore = true
+		}
+	}
 }
 
 struct SidebarViewToolbar_Previews: PreviewProvider {
