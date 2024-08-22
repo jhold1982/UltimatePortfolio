@@ -32,11 +32,13 @@ extension DataController {
 		}
 	}
 	
+	
 	@MainActor
+	/// Method to show progressView before product purchase button appears
 	func loadProducts() async throws {
 		guard products.isEmpty else { return }
 		
-		try await Task.sleep(for: .seconds(0.2))
+		try await Task.sleep(for: .seconds(1.7))
 		products = try await Product.products(for: [Self.unlockPremiumProductID])
 	}
 	

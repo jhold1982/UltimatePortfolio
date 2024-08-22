@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AwardsView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@EnvironmentObject var dataController: DataController
 	
 	@State private var selectedAward = Award.example
@@ -27,7 +27,7 @@ struct AwardsView: View {
 		}
 	}
 	
-	// MARK: - VIEW BODY
+	// MARK: - View Body
 	var body: some View {
 		NavigationStack {
 			ScrollView {

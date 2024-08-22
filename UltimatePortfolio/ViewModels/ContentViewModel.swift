@@ -14,6 +14,10 @@ extension ContentView {
 		
 		var dataController: DataController
 		
+		var shouldRequestReview: Bool {
+			dataController.count(for: Tag.fetchRequest()) >= 5 
+		}
+		
 		init(dataController: DataController) {
 			self.dataController = dataController
 		}
@@ -27,7 +31,7 @@ extension ContentView {
 			set { dataController[keyPath: keyPath] = newValue }
 		}
 		
-		// MARK: - FUNCTIONS
+		// MARK: - Functions
 		/// Method to deleted "Issues" from DataController
 		/// - Parameter offsets: Looks for that Issue's Index and deletes
 		func delete(_ offsets: IndexSet) {

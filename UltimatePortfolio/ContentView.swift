@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	
 	// MARK: - Properties
+	@Environment(\.requestReview) var requestReview
 	@StateObject var viewModel: ViewModel
 	
 	
@@ -31,11 +32,20 @@ struct ContentView: View {
 			Text(tag.tagName)
 		}
 		.toolbar(content: ContentViewToolbar.init)
+		.onAppear(perform: {
+			askForReview()
+		})
     }
 	
 	init(dataController: DataController) {
 		let viewModel = ViewModel(dataController: dataController)
 		_viewModel = StateObject(wrappedValue: viewModel)
+	}
+	
+	func askForReview() {
+		if viewModel.shouldRequestReview {
+			requestReview()
+		}
 	}
 }
 

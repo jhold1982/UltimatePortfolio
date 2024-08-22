@@ -52,9 +52,12 @@ struct StoreView: View {
 					VStack {
 						switch loadState {
 						case .loading:
-							Text("Loading")
-								.font(.headline)
+							Text("u got mad rizz")
+								.font(.title2.bold())
+								.padding(.top, 30)
+							
 							ProgressView()
+								.controlSize(.mini)
 						case .loaded:
 							ForEach(dataController.products) { product in
 								Button {
@@ -84,6 +87,7 @@ struct StoreView: View {
 							
 						case .error:
 							Text("Sorry, there was an error loading our store.")
+								.padding(.top, 30)
 							// retry code below
 							
 							Button("Try Again") {
@@ -100,9 +104,10 @@ struct StoreView: View {
 				// Footer View
 				Button("Restore Purchases", action: restore)
 				
-				Button("Cancel") {
+				Button("Cancel", role: .destructive) {
 					dismiss()
 				}
+//				.foregroundStyle(.red)
 				.padding(.top, 20)
 			}
 		}
