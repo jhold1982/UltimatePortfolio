@@ -18,6 +18,9 @@ struct UltimatePortfolioApp: App {
 	// ensuring it stays alive for the duration of our app’s runtime,
 	// but we don’t want to observe the object for changes.
 	@Environment(\.scenePhase) var scenePhase
+	
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+	
     var body: some Scene {
         WindowGroup {
 			NavigationSplitView {

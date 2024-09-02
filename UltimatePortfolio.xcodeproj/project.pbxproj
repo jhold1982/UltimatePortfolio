@@ -48,6 +48,8 @@
 		64CE96E82A09768500C435CC /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 64CE96EA2A09768500C435CC /* Awards.json */; };
 		64D4531C2C3ECB0700B18C31 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4531B2C3ECB0700B18C31 /* DataController-Notifications.swift */; };
 		64DC3D2A2A7FC77A00C40BF1 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3D292A7FC77A00C40BF1 /* TagTests.swift */; };
+		64F014C22C81110900A5643C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F014C12C81110900A5643C /* AppDelegate.swift */; };
+		64F014C42C81112300A5643C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F014C32C81112300A5643C /* SceneDelegate.swift */; };
 		64F0B34429A109F300E20CDB /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34229A109F300E20CDB /* Main.xcdatamodeld */; };
 		64F0B34629A1DB7600E20CDB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34529A1DB7600E20CDB /* DataController.swift */; };
 		64FD48C42A81EA4000A40017 /* AwardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD48C32A81EA4000A40017 /* AwardsTest.swift */; };
@@ -123,6 +125,8 @@
 		64CE96EB2A09768C00C435CC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = hu; path = hu.lproj/Awards.json; sourceTree = "<group>"; };
 		64D4531B2C3ECB0700B18C31 /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
 		64DC3D292A7FC77A00C40BF1 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		64F014C12C81110900A5643C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		64F014C32C81112300A5643C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64F0B34329A109F300E20CDB /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		64F0B34529A1DB7600E20CDB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		64F0B34729A1ED7D00E20CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				64B983CD2A463FA700470A72 /* Awards */,
 				64C5B25B2C515BFF00F7CB53 /* Store */,
 				64BFCA882BE4206800DF743A /* DataModels */,
+				64F014C52C81112E00A5643C /* Delegates */,
 				64A149D62BE544EB006D797D /* ViewModels */,
 				64133A6129DBE45300EFA3D9 /* Extensions */,
 				643364132A45D4E000C080F6 /* Localization */,
@@ -341,6 +346,15 @@
 			path = UltimatePortfolioUITests;
 			sourceTree = "<group>";
 		};
+		64F014C52C81112E00A5643C /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				64F014C12C81110900A5643C /* AppDelegate.swift */,
+				64F014C32C81112300A5643C /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,6 +496,7 @@
 				6469703F2A1BCCDF004FA284 /* TagsMenuView.swift in Sources */,
 				644F3CE229E4A5B80084D122 /* Award.swift in Sources */,
 				6469703B2A1BCA5B004FA284 /* IssueViewToolbar.swift in Sources */,
+				64F014C22C81110900A5643C /* AppDelegate.swift in Sources */,
 				646970412A1BCE06004FA284 /* SmartFilterRow.swift in Sources */,
 				644F3CE429E4A67E0084D122 /* AwardsView.swift in Sources */,
 				64256A672C48598F0066221B /* DataController-StoreKit.swift in Sources */,
@@ -489,6 +504,7 @@
 				64590E2629A312A40028317D /* Tag-CoreDataHelpers.swift in Sources */,
 				64F0B34429A109F300E20CDB /* Main.xcdatamodeld in Sources */,
 				64590E2429A30DFB0028317D /* Issue-CoreDataHelpers.swift in Sources */,
+				64F014C42C81112300A5643C /* SceneDelegate.swift in Sources */,
 				644F3CDC29E492340084D122 /* Bundle-Decodable.swift in Sources */,
 				643C0ACA29A1F9D600116893 /* DetailView.swift in Sources */,
 				645B81AE2BD99A2F00228080 /* SidebarViewModel.swift in Sources */,
