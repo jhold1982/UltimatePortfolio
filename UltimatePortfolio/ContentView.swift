@@ -13,6 +13,7 @@ struct ContentView: View {
 	@Environment(\.requestReview) var requestReview
 	@StateObject var viewModel: ViewModel
 	
+	private let newIssueActivity = "com.leftHandedApps.UltimatePortfolio.newIssue"
 	
 	// MARK: - View Body
     var body: some View {
@@ -34,6 +35,14 @@ struct ContentView: View {
 		.toolbar(content: ContentViewToolbar.init)
 		.onAppear(perform: askForReview)
 		.onOpenURL(perform: openURL)
+		.userActivity(newIssueActivity) { activity in
+			activity.isEligibleForPrediction = true
+			activity.title = "New Issue"
+		}
+		.onContinueUserActivity(
+			newIssueActivity,
+			perform: resumeActivity
+		)
     }
 	
 	init(dataController: DataController) {
@@ -51,6 +60,10 @@ struct ContentView: View {
 		if url.absoluteString.contains("newIssue") {
 			viewModel.dataController.newIssue()
 		}
+	}
+	
+	func resumeActivity(_ userActivity: NSUserActivity) {
+		viewModel.dataController.newIssue()
 	}
 }
 

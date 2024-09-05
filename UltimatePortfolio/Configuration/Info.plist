@@ -15,6 +15,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.leftHandedApps.UltimatePortfolio.newIssue</string>
+	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
