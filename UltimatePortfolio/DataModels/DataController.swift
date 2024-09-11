@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import StoreKit
+import WidgetKit
 
 // MARK: - Enums
 enum SortType: String {
@@ -104,6 +105,12 @@ class DataController: ObservableObject {
 		// so our data is destroyed after the app finishes running.
 		if inMemory {
 			container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
+		} else {
+			let groupID = "group.com.leftHandedApps.UltimatePortf"
+			
+			if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
+				container.persistentStoreDescriptions.first?.url = url.appending(path: "Main.sqlite")
+			}
 		}
 
 		container.viewContext.automaticallyMergesChangesFromParent = true
@@ -115,6 +122,11 @@ class DataController: ObservableObject {
 		container.persistentStoreDescriptions.first?.setOption(
 			true as NSNumber,
 			forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+		)
+		
+		container.persistentStoreDescriptions.first?.setOption(
+			true as NSNumber,
+			forKey: NSPersistentHistoryTrackingKey
 		)
 
 		NotificationCenter.default.addObserver(
@@ -189,6 +201,7 @@ class DataController: ObservableObject {
 
 		if container.viewContext.hasChanges {
 			try? container.viewContext.save()
+			WidgetCenter.shared.reloadAllTimelines()
 		}
 	}
 
@@ -344,5 +357,21 @@ class DataController: ObservableObject {
 		}
 		
 		return try? container.viewContext.existingObject(with: id) as? Issue
+	}
+	
+	func fetchRequestForTopIssues(count: Int) -> NSFetchRequest<Issue> {
+		let request = Issue.fetchRequest()
+		request.predicate = NSPredicate(format: "completed = false")
+		
+		request.sortDescriptors = [
+			NSSortDescriptor(keyPath: \Issue.priority, ascending: false)
+		]
+		
+		request.fetchLimit = count
+		return request
+	}
+	
+	func results<T: NSManagedObject>(for fetchRequest: NSFetchRequest<T>) -> [T] {
+		return (try? container.viewContext.fetch(fetchRequest)) ?? []
 	}
 }

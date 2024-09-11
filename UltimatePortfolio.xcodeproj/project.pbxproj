@@ -139,6 +139,7 @@
 		647C42DE29A95F31006057B9 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 		647C42E029A96A7E006057B9 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		647C42E229A96A8A006057B9 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
+		649662D52C8E5AB6000AFD4F /* PortfolioWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PortfolioWidgetExtension.entitlements; sourceTree = "<group>"; };
 		64A48DFF2A92B79B00B45441 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		64A48E012A92B7F900B45441 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
 		64AFF0AD2C8A55CB002E8356 /* PortfolioWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PortfolioWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +223,7 @@
 		64138EBE299DADAF00566CE0 = {
 			isa = PBXGroup;
 			children = (
+				649662D52C8E5AB6000AFD4F /* PortfolioWidgetExtension.entitlements */,
 				64138EC9299DADAF00566CE0 /* UltimatePortfolio */,
 				646BC0F72A4A16C9005F7C6B /* UltimatePortfolioTests */,
 				64CC625E2A93CE7B0056F39F /* UltimatePortfolioUITests */,
@@ -971,6 +973,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PortfolioWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N8877H53MP;
@@ -1003,6 +1006,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PortfolioWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N8877H53MP;
