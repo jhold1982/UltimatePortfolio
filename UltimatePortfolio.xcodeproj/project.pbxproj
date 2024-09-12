@@ -39,7 +39,7 @@
 		64AFF0B02C8A55CB002E8356 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64AFF0AF2C8A55CB002E8356 /* WidgetKit.framework */; };
 		64AFF0B22C8A55CB002E8356 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64AFF0B12C8A55CB002E8356 /* SwiftUI.framework */; };
 		64AFF0B52C8A55CB002E8356 /* PortfolioWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFF0B42C8A55CB002E8356 /* PortfolioWidgetBundle.swift */; };
-		64AFF0B72C8A55CB002E8356 /* PortfolioWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFF0B62C8A55CB002E8356 /* PortfolioWidget.swift */; };
+		64AFF0B72C8A55CB002E8356 /* SimplePortfolioWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFF0B62C8A55CB002E8356 /* SimplePortfolioWidget.swift */; };
 		64AFF0B92C8A55CD002E8356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64AFF0B82C8A55CD002E8356 /* Assets.xcassets */; };
 		64AFF0BD2C8A55CD002E8356 /* PortfolioWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 64AFF0AD2C8A55CB002E8356 /* PortfolioWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64AFF0C12C8A55D3002E8356 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34229A109F300E20CDB /* Main.xcdatamodeld */; };
@@ -52,6 +52,7 @@
 		64BABEAB2A8D356800E4B4B6 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */; };
 		64BFCA872BE4201B00DF743A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BFCA862BE4201B00DF743A /* ContentViewModel.swift */; };
 		64BFCA8A2BE4219D00DF743A /* IssueRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BFCA892BE4219D00DF743A /* IssueRowViewModel.swift */; };
+		64C488952C9328DD00A7D6EC /* ComplexPortfolioWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C488942C9328DD00A7D6EC /* ComplexPortfolioWidget.swift */; };
 		64C5B25D2C515C1A00F7CB53 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5B25C2C515C1A00F7CB53 /* StoreView.swift */; };
 		64CC62582A93C9030056F39F /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC62572A93C9030056F39F /* PerformanceTests.swift */; };
 		64CC62602A93CE7B0056F39F /* UltimatePortfolioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC625F2A93CE7B0056F39F /* UltimatePortfolioUITests.swift */; };
@@ -146,13 +147,14 @@
 		64AFF0AF2C8A55CB002E8356 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		64AFF0B12C8A55CB002E8356 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		64AFF0B42C8A55CB002E8356 /* PortfolioWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioWidgetBundle.swift; sourceTree = "<group>"; };
-		64AFF0B62C8A55CB002E8356 /* PortfolioWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioWidget.swift; sourceTree = "<group>"; };
+		64AFF0B62C8A55CB002E8356 /* SimplePortfolioWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePortfolioWidget.swift; sourceTree = "<group>"; };
 		64AFF0B82C8A55CD002E8356 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64AFF0BA2C8A55CD002E8356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64AFF0C92C8A573E002E8356 /* DataController-Awards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Awards.swift"; sourceTree = "<group>"; };
 		64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		64BFCA862BE4201B00DF743A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		64BFCA892BE4219D00DF743A /* IssueRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowViewModel.swift; sourceTree = "<group>"; };
+		64C488942C9328DD00A7D6EC /* ComplexPortfolioWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexPortfolioWidget.swift; sourceTree = "<group>"; };
 		64C5B25C2C515C1A00F7CB53 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		64CC62572A93C9030056F39F /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		64CC625D2A93CE7B0056F39F /* UltimatePortfolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UltimatePortfolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -343,7 +345,8 @@
 			isa = PBXGroup;
 			children = (
 				64AFF0B42C8A55CB002E8356 /* PortfolioWidgetBundle.swift */,
-				64AFF0B62C8A55CB002E8356 /* PortfolioWidget.swift */,
+				64AFF0B62C8A55CB002E8356 /* SimplePortfolioWidget.swift */,
+				64C488942C9328DD00A7D6EC /* ComplexPortfolioWidget.swift */,
 				64AFF0B82C8A55CD002E8356 /* Assets.xcassets */,
 				64AFF0BA2C8A55CD002E8356 /* Info.plist */,
 			);
@@ -654,11 +657,12 @@
 				64AFF0C52C8A5608002E8356 /* DataController.swift in Sources */,
 				64AFF0C12C8A55D3002E8356 /* Main.xcdatamodeld in Sources */,
 				64AFF0C42C8A55F9002E8356 /* Filter.swift in Sources */,
-				64AFF0B72C8A55CB002E8356 /* PortfolioWidget.swift in Sources */,
+				64AFF0B72C8A55CB002E8356 /* SimplePortfolioWidget.swift in Sources */,
 				64AFF0C82C8A5664002E8356 /* DataController-StoreKit.swift in Sources */,
 				64AFF0C32C8A55E5002E8356 /* Tag-CoreDataHelpers.swift in Sources */,
 				64AFF0C22C8A55E0002E8356 /* Issue-CoreDataHelpers.swift in Sources */,
 				64AFF0B52C8A55CB002E8356 /* PortfolioWidgetBundle.swift in Sources */,
+				64C488952C9328DD00A7D6EC /* ComplexPortfolioWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
