@@ -23,14 +23,10 @@ struct IssueViewToolbar: View {
     var body: some View {
 		Menu {
 			
-			Button {
-				UIPasteboard.general.string = issue.title
-			} label: {
-				Label(
-					"Copy Issue Title",
-					systemImage: "doc.on.doc"
-				)
-			}
+			Button( "Copy Issue Title", systemImage: "doc.on.doc", action: copyToCliboard)
+			
+			
+			
 			
 			Button(action: toggleCompleted) {
 				Label(
@@ -113,6 +109,15 @@ struct IssueViewToolbar: View {
 				// playing haptics didn't work
 			}
 		}
+	}
+	
+	func copyToCliboard() {
+		#if os(iOS)
+		UIPasteboard.general.string = issue.text
+		#else
+		NSPasteboard.general.prepareForNewContents()
+		NSPasteboard.general.setString(issue.issueTitle, forType: .string)
+		#endif
 	}
 }
 

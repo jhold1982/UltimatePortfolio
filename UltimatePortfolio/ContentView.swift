@@ -36,7 +36,9 @@ struct ContentView: View {
 		.onAppear(perform: askForReview)
 		.onOpenURL(perform: viewModel.openURL)
 		.userActivity(newIssueActivity) { activity in
+			#if !os(macOS)
 			activity.isEligibleForPrediction = true
+			#endif
 			activity.title = "New Issue"
 		}
 		.onContinueUserActivity(

@@ -19,7 +19,9 @@ struct UltimatePortfolioApp: App {
 	// but we don’t want to observe the object for changes.
 	@Environment(\.scenePhase) var scenePhase
 	
+	#if os(iOS)
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+	#endif
 	
     var body: some Scene {
         WindowGroup {

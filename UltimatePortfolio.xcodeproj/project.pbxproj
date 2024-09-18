@@ -49,6 +49,7 @@
 		64AFF0C52C8A5608002E8356 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0B34529A1DB7600E20CDB /* DataController.swift */; };
 		64AFF0C82C8A5664002E8356 /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64256A662C48598F0066221B /* DataController-StoreKit.swift */; };
 		64AFF0CA2C8A573E002E8356 /* DataController-Awards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFF0C92C8A573E002E8356 /* DataController-Awards.swift */; };
+		64B80D282C9B68A100D1D67D /* InlineNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B80D272C9B689000D1D67D /* InlineNavigationBar.swift */; };
 		64BABEAB2A8D356800E4B4B6 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */; };
 		64BFCA872BE4201B00DF743A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BFCA862BE4201B00DF743A /* ContentViewModel.swift */; };
 		64BFCA8A2BE4219D00DF743A /* IssueRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BFCA892BE4219D00DF743A /* IssueRowViewModel.swift */; };
@@ -151,6 +152,7 @@
 		64AFF0B82C8A55CD002E8356 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64AFF0BA2C8A55CD002E8356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64AFF0C92C8A573E002E8356 /* DataController-Awards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Awards.swift"; sourceTree = "<group>"; };
+		64B80D272C9B689000D1D67D /* InlineNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineNavigationBar.swift; sourceTree = "<group>"; };
 		64BABEAA2A8D356800E4B4B6 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		64BFCA862BE4201B00DF743A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		64BFCA892BE4219D00DF743A /* IssueRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowViewModel.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				64B983CB2A463F9B00470A72 /* Issues */,
 				64B983CD2A463FA700470A72 /* Awards */,
 				64C5B25B2C515BFF00F7CB53 /* Store */,
+				64B80D262C9B687000D1D67D /* PlatformAdjustments */,
 				64BFCA882BE4206800DF743A /* DataModels */,
 				64F014C52C81112E00A5643C /* Delegates */,
 				64A149D62BE544EB006D797D /* ViewModels */,
@@ -351,6 +354,14 @@
 				64AFF0BA2C8A55CD002E8356 /* Info.plist */,
 			);
 			path = PortfolioWidget;
+			sourceTree = "<group>";
+		};
+		64B80D262C9B687000D1D67D /* PlatformAdjustments */ = {
+			isa = PBXGroup;
+			children = (
+				64B80D272C9B689000D1D67D /* InlineNavigationBar.swift */,
+			);
+			path = PlatformAdjustments;
 			sourceTree = "<group>";
 		};
 		64B983CA2A463F9400470A72 /* Filters */ = {
@@ -518,7 +529,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					64138EC6299DADAF00566CE0 = {
 						CreatedOnToolsVersion = 14.2;
@@ -623,6 +634,7 @@
 				64BFCA872BE4201B00DF743A /* ContentViewModel.swift in Sources */,
 				64F0B34629A1DB7600E20CDB /* DataController.swift in Sources */,
 				6469703D2A1BCB15004FA284 /* ContentViewToolbar.swift in Sources */,
+				64B80D282C9B68A100D1D67D /* InlineNavigationBar.swift in Sources */,
 				643C0AC829A1F9B900116893 /* SidebarView.swift in Sources */,
 				64138ECD299DADAF00566CE0 /* ContentView.swift in Sources */,
 				646970392A1BA6DF004FA284 /* SidebarViewToolbar.swift in Sources */,
@@ -850,7 +862,6 @@
 		64138ED7299DADAF00566CE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = UltimatePortfolio/Configuration/UltimatePortfolio.entitlements;
@@ -877,7 +888,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lefthandedapps.UltimatePortfolio2023;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -892,7 +903,6 @@
 		64138ED8299DADAF00566CE0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = UltimatePortfolio/Configuration/UltimatePortfolio.entitlements;
@@ -919,7 +929,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lefthandedapps.UltimatePortfolio2023;
 				PRODUCT_NAME = "$(TARGET_NAME)";

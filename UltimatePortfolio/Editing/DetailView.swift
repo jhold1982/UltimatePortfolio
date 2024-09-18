@@ -18,7 +18,9 @@ struct DetailView: View {
 			}
 		}
 		.navigationTitle("Issue")
-		.navigationBarTitleDisplayMode(.inline)
+		.inlineNavigationBar()
+		
+		
     }
 }
 

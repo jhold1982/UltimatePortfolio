@@ -77,7 +77,13 @@ struct IssueView: View {
 			IssueViewToolbar(issue: issue)
 		}
 		.alert("Oops!", isPresented: $showingNotificationsError) {
+			#if os(macOS)
+			SettingsLink {
+				Text("Check Settings")
+			}
+			#else
 			Button("Check Settings", action: showAppSettings)
+			#endif
 			Button("Cancel", role: .cancel) { }
 		} message: {
 			Text("There was a problem setting your notification. Please check you have notifications enabled.")
@@ -91,12 +97,14 @@ struct IssueView: View {
     }
 	
 	// MARK: - Functions
+	#if os(iOS)
 	func showAppSettings() {
 		guard let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) else {
 			return
 		}
 		openURL(settingsURL)
 	}
+	#endif
 	
 	func updateReminder() {
 		dataController.removeReminders(for: issue)
