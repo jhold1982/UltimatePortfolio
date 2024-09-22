@@ -120,7 +120,7 @@ struct StoreView: View {
 			Please ask whomever manages your device for assistance.
 			""")
 		}
-		.onChange(of: dataController.fullVersionUnlocked) { _ in
+		.onChange(of: dataController.fullVersionUnlocked) { _, _ in
 			checkForPurchase()
 		}
 		.task {

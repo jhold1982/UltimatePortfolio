@@ -15,24 +15,35 @@ struct ContentViewToolbar: View {
 				dataController.filterEnabled.toggle()
 			}
 			.padding()
+			
 			Divider()
+			
 			Menu("Sort By") {
+				
 				Picker("Sort By", selection: $dataController.sortType) {
 					Text("Date Created").tag(SortType.dateCreated)
 					Text("Date Modified").tag(SortType.dateModified)
 				}
+				.pickerStyle(.inline)
+				.labelsHidden()
+				
 				Divider()
+				
 				Picker("Sort Order", selection: $dataController.sortNewestFirst) {
 					Text("Newest to Oldest").tag(true)
 					Text("Oldest to Newest").tag(false)
 				}
+				.pickerStyle(.inline)
+				.labelsHidden()
 			}
+			
 			Picker("Status", selection: $dataController.filterStatus) {
 				Text("All").tag(Status.all)
 				Text("Open").tag(Status.open)
 				Text("Closed").tag(Status.closed)
 			}
 			.disabled(dataController.filterEnabled == false)
+			
 			Picker("Priority", selection: $dataController.filterPriority) {
 				Text("All").tag(-1)
 				Text("Low").tag(0)
@@ -44,9 +55,11 @@ struct ContentViewToolbar: View {
 			Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
 				.symbolVariant(dataController.filterEnabled ? .fill : .none)
 		}
+		
 		Button(action: dataController.newIssue) {
 			Label("New Issue", systemImage: "square.and.pencil")
 		}
+		.help("New Issue")
     }
 }
 

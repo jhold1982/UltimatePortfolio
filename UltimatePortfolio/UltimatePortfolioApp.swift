@@ -37,7 +37,7 @@ struct UltimatePortfolioApp: App {
 			// so this effectively connects Core Data to SwiftUI.
 			.environment(\.managedObjectContext, dataController.container.viewContext)
 			.environmentObject(dataController)
-			.onChange(of: scenePhase) { phase in
+			.onChange(of: scenePhase) { phase, _ in
 				if phase != .active {
 					dataController.save()
 				}

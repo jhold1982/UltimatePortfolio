@@ -112,6 +112,10 @@ class DataController: ObservableObject {
 				container.persistentStoreDescriptions.first?.url = url.appending(path: "Main.sqlite")
 			}
 		}
+		
+		
+		
+		
 
 		container.viewContext.automaticallyMergesChangesFromParent = true
 		container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
@@ -139,9 +143,13 @@ class DataController: ObservableObject {
 		container.loadPersistentStores {
 			[weak self] _,
 			error in
-			if let error {
-				fatalError("Fatal error loading store: \(error.localizedDescription)")
-			}
+			
+//			if let error {
+//				fatalError("Error loading store: \(error.localizedDescription)")
+//				
+//			}
+			
+			
 			
 			if let description = self?.container.persistentStoreDescriptions.first {
 				description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)

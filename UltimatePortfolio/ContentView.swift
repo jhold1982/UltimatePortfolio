@@ -23,6 +23,7 @@ struct ContentView: View {
 			}
 			.onDelete(perform: viewModel.delete)
 		}
+		.macFrame(minWidth: 220)
 		.navigationTitle("Issues")
 		.searchable(
 			text: $viewModel.filterText,

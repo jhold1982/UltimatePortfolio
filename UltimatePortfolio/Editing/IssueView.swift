@@ -20,17 +20,22 @@ struct IssueView: View {
 		Form {
 			Section {
 				VStack(alignment: .leading) {
+					
 					TextField(
 						"Title",
 						text: $issue.issueTitle,
 						prompt: Text("Enter the issue title here")
-					)
-						.font(.title)
-					Text("**Modified:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))")
-						.foregroundStyle(.secondary)
-					Text("**Status:** \(issue.issueStatus)")
-						.foregroundStyle(.secondary)
+					).font(.title).labelsHidden()
+					
+					Text(
+						"**Modified:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))"
+					).foregroundStyle(.secondary)
+					
+					Text(
+						"**Status:** \(issue.issueStatus)"
+					).foregroundStyle(.secondary)
 				}
+				
 				Picker("Priority", selection: $issue.priority) {
 					Text("Low").tag(Int16(0))
 					Text("Medium").tag(Int16(1))
@@ -43,15 +48,18 @@ struct IssueView: View {
 			
 			Section {
 				VStack(alignment: .leading) {
+					
 					Text("Basic Information")
 						.font(.title2)
 						.foregroundStyle(.secondary)
+					
 					TextField(
 						"Description",
 						text: $issue.issueContent,
 						prompt: Text("Enter the issue description here"),
 						axis: .vertical
 					)
+					.labelsHidden()
 				}
 			}
 			
@@ -68,6 +76,7 @@ struct IssueView: View {
 			}
 		}
 		// MARK: - View Modifiers
+		.formStyle(.grouped)
 		.disabled(issue.isDeleted)
 		.onReceive(issue.objectWillChange) { _ in
 			dataController.queueSave()
@@ -88,10 +97,10 @@ struct IssueView: View {
 		} message: {
 			Text("There was a problem setting your notification. Please check you have notifications enabled.")
 		}
-		.onChange(of: issue.reminderEnabled) { _ in
+		.onChange(of: issue.reminderEnabled) { _, _ in
 			updateReminder()
 		}
-		.onChange(of: issue.reminderTime) { _ in
+		.onChange(of: issue.reminderTime) { _, _ in
 			updateReminder()
 		}
     }
