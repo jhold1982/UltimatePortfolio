@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.leftHandedApps.UltimatePortfolio</string>
+			<string>com.leftHandedApps.UltimatePortfolio2023</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ultimateportfolio</string>
@@ -17,7 +17,7 @@
 	</array>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>com.leftHandedApps.UltimatePortfolio.newIssue</string>
+		<string>com.leftHandedApps.UltimatePortfolio2023.newIssue</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>

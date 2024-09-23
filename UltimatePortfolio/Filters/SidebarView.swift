@@ -8,29 +8,23 @@
 import SwiftUI
 
 struct SidebarView: View {
-	
-	// MARK: - PROPERTIES
 	@StateObject private var viewModel: ViewModel
 	let smartFilters: [Filter] = [.all, .recent]
-	
+
 	init(dataController: DataController) {
 		let viewModel = ViewModel(dataController: dataController)
 		_viewModel = StateObject(wrappedValue: viewModel)
 	}
-	
-	// MARK: - VIEW BODY
-    var body: some View {
+
+	var body: some View {
 		List(selection: $viewModel.dataController.selectedFilter) {
 			Section("Smart Filters") {
 				ForEach(smartFilters, content: SmartFilterRow.init)
 			}
+
 			Section("Tags") {
 				ForEach(viewModel.tagFilters) { filter in
-					UserFilterRow(
-						filter: filter,
-						rename: viewModel.rename,
-						delete: viewModel.delete
-					)
+					UserFilterRow(filter: filter, rename: viewModel.rename, delete: viewModel.delete)
 				}
 				.onDelete(perform: viewModel.delete)
 			}
@@ -43,11 +37,11 @@ struct SidebarView: View {
 			TextField("New name", text: $viewModel.tagName)
 		}
 		.navigationTitle("Filters")
-    }
+	}
 }
 
 struct SidebarView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		SidebarView(dataController: .preview)
-    }
+	}
 }

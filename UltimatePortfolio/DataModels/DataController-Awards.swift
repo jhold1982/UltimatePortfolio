@@ -8,7 +8,6 @@
 import Foundation
 
 extension DataController {
-	
 	func hasEarned(award: Award) -> Bool {
 		switch award.criterion {
 		case "issues":
@@ -29,7 +28,7 @@ extension DataController {
 			let fetchRequest = Tag.fetchRequest()
 			let awardCount = count(for: fetchRequest)
 			return awardCount >= award.value
-			
+
 		case "unlock":
 			return fullVersionUnlocked
 

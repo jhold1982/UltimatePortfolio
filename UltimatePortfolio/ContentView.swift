@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-	
-	// MARK: - Properties
 	@Environment(\.requestReview) var requestReview
 	@StateObject var viewModel: ViewModel
-	
-	private let newIssueActivity = "com.leftHandedApps.UltimatePortfolio.newIssue"
-	
-	// MARK: - View Body
-    var body: some View {
+
+	private let newIssueActivity = "com.leftHandedApps.UltimatePortfolio2023.newIssue"
+
+	var body: some View {
 		List(selection: $viewModel.selectedIssue) {
 			ForEach(viewModel.dataController.issuesForSelectedFilter()) { issue in
 				IssueRow(issue: issue)
@@ -42,34 +39,28 @@ struct ContentView: View {
 			#endif
 			activity.title = "New Issue"
 		}
-		.onContinueUserActivity(
-			newIssueActivity,
-			perform: resumeActivity
-		)
-    }
-	
-	// MARK: - Initializer
+		.onContinueUserActivity(newIssueActivity, perform: resumeActivity)
+	}
+
 	init(dataController: DataController) {
 		let viewModel = ViewModel(dataController: dataController)
 		_viewModel = StateObject(wrappedValue: viewModel)
 	}
-	
-	// MARK: - Functions
+
 	func askForReview() {
 		if viewModel.shouldRequestReview {
 			requestReview()
 		}
 	}
-	
+
 	func resumeActivity(_ userActivity: NSUserActivity) {
 		viewModel.dataController.newIssue()
 	}
 }
 
-// MARK: - Previews
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		ContentView(dataController: .preview)
-			.environmentObject(DataController(inMemory: true))
-    }
+	}
 }
+

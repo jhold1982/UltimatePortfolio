@@ -5,12 +5,11 @@
 //  Created by Justin Hold on 2/18/23.
 //
 
-import SwiftUI
 import CoreData
 import StoreKit
+import SwiftUI
 import WidgetKit
 
-// MARK: - Enums
 enum SortType: String {
 	case dateCreated = "creationDate"
 	case dateModified = "modificationDate"
@@ -20,15 +19,12 @@ enum Status {
 	case all, open, closed
 }
 
-// MARK: - DataController Class
 /// An environment singleton responsible for managing our Core Data stack, including handling saving,
 /// counting fetch requests, tracking orders, and dealing with sample data.
 class DataController: ObservableObject {
-	
-	// MARK: - Properties
 	/// The lone CloudKit container used to store all our data.
 	let container: NSPersistentCloudKitContainer
-	
+
 	var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
 
 	@Published var selectedFilter: Filter? = Filter.all
@@ -43,13 +39,13 @@ class DataController: ObservableObject {
 	@Published var sortType = SortType.dateCreated
 	@Published var sortNewestFirst = true
 
-	private var saveTask: Task<Void, Error>?
 	private var storeTask: Task<Void, Never>?
-	
-	/// The UserDefaults suite where we're saving user data
+	private var saveTask: Task<Void, Error>?
+
+	/// The UserDefaults suite where we're saving user data.
 	let defaults: UserDefaults
-	
-	/// The StoreKit products we've loaded for the store
+
+	/// The StoreKit products we've loaded for the store.
 	@Published var products = [Product]()
 
 	static var preview: DataController = {
@@ -85,7 +81,6 @@ class DataController: ObservableObject {
 		return managedObjectModel
 	}()
 
-	// MARK: - Initializer
 	/// Initializes a data controller, either in memory (for testing use such as previewing),
 	/// or on permanent storage (for use in regular app runs.)
 	///
@@ -95,7 +90,7 @@ class DataController: ObservableObject {
 	init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
 		self.defaults = defaults
 		container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
-		
+
 		storeTask = Task {
 			await monitorTransactions()
 		}
@@ -106,16 +101,12 @@ class DataController: ObservableObject {
 		if inMemory {
 			container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
 		} else {
-			let groupID = "group.com.leftHandedApps.UltimatePortf"
-			
+			let groupID = "group.com.hackingwithswift.upa"
+
 			if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
 				container.persistentStoreDescriptions.first?.url = url.appending(path: "Main.sqlite")
 			}
 		}
-		
-		
-		
-		
 
 		container.viewContext.automaticallyMergesChangesFromParent = true
 		container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
@@ -127,7 +118,7 @@ class DataController: ObservableObject {
 			true as NSNumber,
 			forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
 		)
-		
+
 		container.persistentStoreDescriptions.first?.setOption(
 			true as NSNumber,
 			forKey: NSPersistentHistoryTrackingKey
@@ -140,34 +131,27 @@ class DataController: ObservableObject {
 			using: remoteStoreChanged
 		)
 
-		container.loadPersistentStores {
-			[weak self] _,
-			error in
-			
+		container.loadPersistentStores { [weak self] _, error in
 //			if let error {
-//				fatalError("Error loading store: \(error.localizedDescription)")
-//				
+//				fatalError("Fatal error loading store: \(error.localizedDescription)")
 //			}
-			
-			
-			
+
 			if let description = self?.container.persistentStoreDescriptions.first {
 				description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-				
+
 				if let coordinator = self?.container.persistentStoreCoordinator {
 					self?.spotlightDelegate = NSCoreDataCoreSpotlightDelegate(
 						forStoreWith: description,
 						coordinator: coordinator
 					)
-					
+
 					self?.spotlightDelegate?.startSpotlightIndexing()
 				}
 			}
-			
+
 			#if DEBUG
 			if CommandLine.arguments.contains("enable-testing") {
 				self?.deleteAll()
-				// disables animations during UI Unit Testing
 				#if os(iOS)
 				UIView.setAnimationsEnabled(false)
 				#endif
@@ -175,8 +159,7 @@ class DataController: ObservableObject {
 			#endif
 		}
 	}
-	
-	// MARK: - Functions
+
 	func remoteStoreChanged(_ notification: Notification) {
 		objectWillChange.send()
 	}
@@ -320,14 +303,15 @@ class DataController: ObservableObject {
 
 	func newTag() -> Bool {
 		var shouldCreate = fullVersionUnlocked
+
 		if shouldCreate == false {
 			shouldCreate = count(for: Tag.fetchRequest()) < 3
 		}
-		
+
 		guard shouldCreate else {
 			return false
 		}
-		
+
 		let tag = Tag(context: container.viewContext)
 		tag.id = UUID()
 		tag.name = NSLocalizedString("New tag", comment: "Create a new tag")
@@ -356,31 +340,31 @@ class DataController: ObservableObject {
 	func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
 		(try? container.viewContext.count(for: fetchRequest)) ?? 0
 	}
-	
+
 	func issue(with uniqueIdentifier: String) -> Issue? {
 		guard let url = URL(string: uniqueIdentifier) else {
 			return nil
 		}
-		
+
 		guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
 			return nil
 		}
-		
+
 		return try? container.viewContext.existingObject(with: id) as? Issue
 	}
-	
+
 	func fetchRequestForTopIssues(count: Int) -> NSFetchRequest<Issue> {
 		let request = Issue.fetchRequest()
 		request.predicate = NSPredicate(format: "completed = false")
-		
+
 		request.sortDescriptors = [
 			NSSortDescriptor(keyPath: \Issue.priority, ascending: false)
 		]
-		
+
 		request.fetchLimit = count
 		return request
 	}
-	
+
 	func results<T: NSManagedObject>(for fetchRequest: NSFetchRequest<T>) -> [T] {
 		return (try? container.viewContext.fetch(fetchRequest)) ?? []
 	}

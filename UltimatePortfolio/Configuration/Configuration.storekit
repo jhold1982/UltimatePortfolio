@@ -1,4 +1,14 @@
 {
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
   "identifier" : "45EE3C16",
   "nonRenewingSubscriptions" : [
 
@@ -15,7 +25,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.lefthandedapps.UltimatePortfolio.premiumUnlock",
+      "productID" : "com.lefthandedapps.UltimatePortfolio2023.premiumUnlock",
       "referenceName" : "Premium Unlock",
       "type" : "NonConsumable"
     }
@@ -76,7 +86,7 @@
 
   ],
   "version" : {
-    "major" : 3,
+    "major" : 4,
     "minor" : 0
   }
 }
