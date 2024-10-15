@@ -116,6 +116,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		648D0A382CB8386A0027F084 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64E9C9412C8A529B00A75FEC /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,6 +434,7 @@
 				646970382A1BA6DF004FA284 /* SidebarViewToolbar.swift */,
 				646970402A1BCE06004FA284 /* SmartFilterRow.swift */,
 				646970422A1BD632004FA284 /* UserFilterRow.swift */,
+				6469703C2A1BCB15004FA284 /* ContentViewToolbar.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -431,7 +442,6 @@
 		64B983CB2A463F9B00470A72 /* Issues */ = {
 			isa = PBXGroup;
 			children = (
-				6469703C2A1BCB15004FA284 /* ContentViewToolbar.swift */,
 				647C42DE29A95F31006057B9 /* IssueRow.swift */,
 			);
 			path = Issues;
@@ -509,6 +519,7 @@
 				64138EC4299DADAF00566CE0 /* Frameworks */,
 				64138EC5299DADAF00566CE0 /* Resources */,
 				64E9C9412C8A529B00A75FEC /* Embed Foundation Extensions */,
+				648D0A382CB8386A0027F084 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -998,7 +1009,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -1039,7 +1050,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;

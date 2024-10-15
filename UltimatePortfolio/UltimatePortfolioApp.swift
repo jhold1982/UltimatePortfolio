@@ -5,7 +5,9 @@
 //  Created by Justin Hold on 2/15/23.
 //
 
+#if canImport(CoreSpotlight)
 import CoreSpotlight
+#endif
 import SwiftUI
 
 @main
@@ -33,14 +35,17 @@ struct UltimatePortfolioApp: App {
 					dataController.save()
 				}
 			}
+			#if canImport(CoreSpotlight)
 			.onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
+			#endif
 		}
 	}
-
+	#if canImport(CoreSpotlight)
 	func loadSpotlightItem(_ userActivity: NSUserActivity) {
 		if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
 			dataController.selectedIssue = dataController.issue(with: uniqueIdentifier)
 			dataController.selectedFilter = .all
 		}
 	}
+	#endif
 }

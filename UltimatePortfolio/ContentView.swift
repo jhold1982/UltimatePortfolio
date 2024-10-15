@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+	
 	@Environment(\.requestReview) var requestReview
+	
 	@StateObject var viewModel: ViewModel
 
 	private let newIssueActivity = "com.leftHandedApps.UltimatePortfolio2023.newIssue"
@@ -47,20 +49,16 @@ struct ContentView: View {
 		_viewModel = StateObject(wrappedValue: viewModel)
 	}
 
+	
 	func askForReview() {
 		if viewModel.shouldRequestReview {
 			requestReview()
 		}
 	}
+	
 
 	func resumeActivity(_ userActivity: NSUserActivity) {
 		viewModel.dataController.newIssue()
-	}
-}
-
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView(dataController: .preview)
 	}
 }
 
